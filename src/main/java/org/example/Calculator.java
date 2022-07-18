@@ -7,37 +7,40 @@ public class Calculator {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Write 1st number");
-        float firstInt = in.nextFloat();
+        float firstNum = in.nextFloat();
         String comand;
         do {
             System.out.println("Write next number");
-            float nextInt = Calculator.readNum();
-            float res = Calculator.calculate(firstInt, nextInt);
+            float nextNum = readNum();
+            float res = calculate(firstNum, nextNum);
             System.out.println("Result is " + res);
             System.out.println("If you want to continue, write \"y\". Else write \"stop\"");
             comand = in.next();
-            firstInt = res;
+            firstNum = res;
         }
-        while (!comand.equals("stop"));
+        while (!comand.toLowerCase().equals("stop"));
         System.out.println("Bye, Bro");
     }
-    public static float calculate(float firstInt, float nextInt) {
+    public static float calculate(float firstNum, float nextNum) {
 
-        String op = Calculator.readOperation();
+        String op = readOperation();
 
         float result=0;
         switch (op) {
             case "+":
-                result = firstInt+nextInt;
+                result = firstNum + nextNum;
                 break;
             case "-":
-                result = firstInt-nextInt;
+                result = firstNum - nextNum;
                 break;
             case "*":
-                result = firstInt*nextInt;
+                result = firstNum * nextNum;
                 break;
             case "/":
-                result = firstInt / nextInt;
+                result = firstNum / nextNum;
+                break;
+            case "%":
+                result = firstNum % nextNum;
                 break;
         }
         return result;
@@ -61,12 +64,20 @@ public class Calculator {
         }
 
     public static String readOperation(){
+        int a = 0;
+        String[] opArr = new String[]{"+","-","/","*","%"};
         Scanner in = new Scanner(System.in);
         System.out.println("Write type of operation");
         String operation = in.next();
-        while (!operation.equals("+") & !operation.equals("-") & !operation.equals("*") & !operation.equals("/")){
-            System.out.println("Wrong operation. Try again");
-            operation = in.next();
+
+        for (int i = 0; i < opArr.length; i++) {
+            if (!operation.equals(opArr[i])){
+                a+=1;
+            }
+        }
+        if (a == opArr.length){
+            System.out.println("Wrong operation");
+            operation = readOperation();
         }
         return operation;
     }
