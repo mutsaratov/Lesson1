@@ -1,5 +1,9 @@
 package org.example;
 
+import java.awt.*;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Calculator {
@@ -49,7 +53,7 @@ public class Calculator {
     public static float readNum(){
         Scanner in = new Scanner(System.in);
         float num2 = in.nextFloat();
-        while (num2 == 0){
+        if (num2 == 0){
             System.out.println("Can't divide by zero. If you aren't going to use \"/\" operation, type \"go\"");
             String ans = in.next();
             if (!ans.equals("go")){
@@ -58,7 +62,6 @@ public class Calculator {
             } else {
                 num2 = 0;
             }
-            break;
         }
         return num2;
         }
@@ -66,19 +69,17 @@ public class Calculator {
     public static String readOperation(){
         int a = 0;
         String[] opArr = new String[]{"+","-","/","*","%"};
+        List<String> list = Arrays.asList(opArr);
+
         Scanner in = new Scanner(System.in);
         System.out.println("Write type of operation");
         String operation = in.next();
 
-        for (int i = 0; i < opArr.length; i++) {
-            if (!operation.equals(opArr[i])){
-                a+=1;
-            }
-        }
-        if (a == opArr.length){
+        while (!list.contains(operation)) {
             System.out.println("Wrong operation");
             operation = readOperation();
         }
+
         return operation;
     }
 }
