@@ -5,7 +5,7 @@ public class Main {
 
         //Calculator.getCalculate();
         //NumbersOutput.output();
-        //LuckyCheck.check(123456);
+        //LuckyCheck.check(123123);
         //GiftCalculator.calc(40,25,15,10);
         //GiftCalculator2.calc(40,25,15,10);
 
